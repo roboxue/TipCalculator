@@ -97,10 +97,10 @@
 				A1798D2F1BBA4CE2009E26A7 /* AppDelegate.swift */,
 				A18C3B561BBA4D3B00C6C977 /* TipsViewController.swift */,
 				A18C3B581BBA500800C6C977 /* LayoutConstants.swift */,
+				A18C3B5A1BBA565000C6C977 /* PreferenceConstants.swift */,
 				A1798D361BBA4CE2009E26A7 /* Images.xcassets */,
 				A1798D381BBA4CE2009E26A7 /* LaunchScreen.xib */,
 				A1798D2D1BBA4CE2009E26A7 /* Supporting Files */,
-				A18C3B5A1BBA565000C6C977 /* PreferenceConstants.swift */,
 			);
 			path = TipCalculator;
 			sourceTree = "<group>";
