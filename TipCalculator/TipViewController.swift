@@ -65,12 +65,20 @@ extension TipViewController {
     }
     
     func updateTips() {
+        let tipsValue: String
         if let amount = NSNumberFormatter().numberFromString(amountInput.text)?.doubleValue {
-            tipsOutput.text = String(format: "$%0.2f", amount * (1 + Double(tipPercentage) / 100.0))
+            tipsValue = String(format: "$%0.2f", amount * (1 + Double(tipPercentage) / 100.0))
         } else {
-            tipsOutput.text = "n/a"
+            tipsValue = "n/a"
         }
 
+        self.tipsOutput.textColor = TUIBackgroundColor
+        self.tipsOutput.alpha = 0
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.tipsOutput.text = tipsValue
+            self.tipsOutput.textColor = TUITintColor
+            self.tipsOutput.alpha = 1
+        })
     }
     
     func didPressedSettingsButton() {

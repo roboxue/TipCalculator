@@ -43,7 +43,7 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController {
     func refresh() {
         defaultTipPercentageValue.text = "\(Defaults.defaultTipPercentage)%"
-        tipPercentageSlider.value = Float(Defaults.defaultTipPercentage)
+        tipPercentageSlider.setValue(Float(Defaults.defaultTipPercentage), animated: true)
     }
     
     func tipSliderDidChanged(sender: UISlider) {
