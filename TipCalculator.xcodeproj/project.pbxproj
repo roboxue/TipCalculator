@@ -12,9 +12,11 @@
 		A1798D371BBA4CE2009E26A7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1798D361BBA4CE2009E26A7 /* Images.xcassets */; };
 		A1798D3A1BBA4CE2009E26A7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1798D381BBA4CE2009E26A7 /* LaunchScreen.xib */; };
 		A1798D461BBA4CE2009E26A7 /* TipCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1798D451BBA4CE2009E26A7 /* TipCalculatorTests.swift */; };
-		A18C3B571BBA4D3B00C6C977 /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18C3B561BBA4D3B00C6C977 /* TipsViewController.swift */; };
+		A18C3B571BBA4D3B00C6C977 /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18C3B561BBA4D3B00C6C977 /* TipViewController.swift */; };
 		A18C3B591BBA500800C6C977 /* LayoutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18C3B581BBA500800C6C977 /* LayoutConstants.swift */; };
 		A18C3B5B1BBA565000C6C977 /* PreferenceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18C3B5A1BBA565000C6C977 /* PreferenceConstants.swift */; };
+		A194B2C31BC20E6C006E6F87 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A194B2C21BC20E6C006E6F87 /* SettingsViewController.swift */; };
+		A194B2C51BC20F95006E6F87 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A194B2C41BC20F95006E6F87 /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,9 +41,11 @@
 		A1798D3F1BBA4CE2009E26A7 /* TipCalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TipCalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1798D441BBA4CE2009E26A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1798D451BBA4CE2009E26A7 /* TipCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipCalculatorTests.swift; sourceTree = "<group>"; };
-		A18C3B561BBA4D3B00C6C977 /* TipsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsViewController.swift; sourceTree = "<group>"; };
+		A18C3B561BBA4D3B00C6C977 /* TipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
 		A18C3B581BBA500800C6C977 /* LayoutConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutConstants.swift; sourceTree = "<group>"; };
 		A18C3B5A1BBA565000C6C977 /* PreferenceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceConstants.swift; sourceTree = "<group>"; };
+		A194B2C21BC20E6C006E6F87 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A194B2C41BC20F95006E6F87 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +99,11 @@
 			isa = PBXGroup;
 			children = (
 				A1798D2F1BBA4CE2009E26A7 /* AppDelegate.swift */,
-				A18C3B561BBA4D3B00C6C977 /* TipsViewController.swift */,
+				A18C3B561BBA4D3B00C6C977 /* TipViewController.swift */,
 				A18C3B581BBA500800C6C977 /* LayoutConstants.swift */,
 				A18C3B5A1BBA565000C6C977 /* PreferenceConstants.swift */,
+				A194B2C21BC20E6C006E6F87 /* SettingsViewController.swift */,
+				A194B2C41BC20F95006E6F87 /* UserDefaults.swift */,
 				A1798D361BBA4CE2009E26A7 /* Images.xcassets */,
 				A1798D381BBA4CE2009E26A7 /* LaunchScreen.xib */,
 				A1798D2D1BBA4CE2009E26A7 /* Supporting Files */,
@@ -291,7 +297,9 @@
 			files = (
 				A18C3B5B1BBA565000C6C977 /* PreferenceConstants.swift in Sources */,
 				A18C3B591BBA500800C6C977 /* LayoutConstants.swift in Sources */,
-				A18C3B571BBA4D3B00C6C977 /* TipsViewController.swift in Sources */,
+				A194B2C51BC20F95006E6F87 /* UserDefaults.swift in Sources */,
+				A18C3B571BBA4D3B00C6C977 /* TipViewController.swift in Sources */,
+				A194B2C31BC20E6C006E6F87 /* SettingsViewController.swift in Sources */,
 				A1798D301BBA4CE2009E26A7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

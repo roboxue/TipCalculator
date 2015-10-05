@@ -1,5 +1,5 @@
 //
-//  TipsViewController.swift
+//  TipViewController.swift
 //  TipCalculator
 //
 //  Created by Robert Xue on 9/28/15.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class TipsViewController: UIViewController {
+class TipViewController: UIViewController {
     private var _inputWrapper: UIView!
     private var _amountInput: UITextField!
     private var _tipsOutput: UILabel!
@@ -17,11 +17,13 @@ class TipsViewController: UIViewController {
     private var _tipPercentLabel: UILabel!
     private var _tipPercentage: Float!
     private var _tipPercentageSlider: UISlider!
+    private var _settingsButton: UIBarButtonItem!
     private let keyboardHeight = 216
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tipPercentage = Float(Defaults.defaultTipPercentage)
         view.addSubview(inputWrapper)
         view.addSubview(tipsOutput)
         view.addSubview(tipPercentageSlider)
@@ -41,18 +43,18 @@ class TipsViewController: UIViewController {
             make.right.equalTo(view).offset(-TUISpanSize)
             make.bottom.equalTo(view).offset(-keyboardHeight)
         }
+        navigationItem.rightBarButtonItem = settingsButton
         
         title = "Tip Calculator"
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        tipPercentage = defaultTipsPercentage
         amountInput.becomeFirstResponder()
     }
 }
 
-extension TipsViewController {
+extension TipViewController {
     func amountDidChanged(sender: UITextField!) {
         updateTips()
     }
@@ -63,20 +65,33 @@ extension TipsViewController {
     }
     
     func updateTips() {
+        let tipsValue: String
         if let amount = NSNumberFormatter().numberFromString(amountInput.text)?.doubleValue {
-            tipsOutput.text = String(format: "$%0.2f", amount * (1 + Double(tipPercentage) / 100.0))
+            tipsValue = String(format: "$%0.2f", amount * (1 + Double(tipPercentage) / 100.0))
         } else {
-            tipsOutput.text = "n/a"
+            tipsValue = "n/a"
         }
 
+        self.tipsOutput.textColor = TUIBackgroundColor
+        self.tipsOutput.alpha = 0
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.tipsOutput.text = tipsValue
+            self.tipsOutput.textColor = TUITintColor
+            self.tipsOutput.alpha = 1
+        })
+    }
+    
+    func didPressedSettingsButton() {
+        let settingsScreen = SettingsViewController()
+        navigationController?.pushViewController(settingsScreen, animated: true)
     }
 }
 
-extension TipsViewController: UITextFieldDelegate {
+extension TipViewController: UITextFieldDelegate {
     
 }
 
-extension TipsViewController {
+extension TipViewController {
     var inputWrapper: UIView {
         if _inputWrapper == nil {
             let wrapper = UIView()
@@ -178,5 +193,13 @@ extension TipsViewController {
             }
             return _tipPercentageSlider
         }
+    }
+    
+    var settingsButton: UIBarButtonItem {
+        if _settingsButton == nil {
+            let button = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: "didPressedSettingsButton")
+            _settingsButton = button
+        }
+        return _settingsButton
     }
 }

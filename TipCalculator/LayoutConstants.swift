@@ -14,6 +14,7 @@ let TUISpanSize = 15
 // Font
 let TUIFontHuge = UIFont(name: "Helvetica", size: 60.0)!
 let TUIFontLarge = UIFont(name: "Helvetica", size: 30.0)!
+let TUIFontRegular = UIFont(name: "Helvetica", size: 17.0)!
 
 
 // Color

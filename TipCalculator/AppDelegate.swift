@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.tintColor = TUITintColor
         window!.backgroundColor = TUIBackgroundColor
-        window!.rootViewController = UINavigationController(rootViewController: TipsViewController())
+        window!.rootViewController = UINavigationController(rootViewController: TipViewController())
         window!.makeKeyAndVisible()
         return true
     }
