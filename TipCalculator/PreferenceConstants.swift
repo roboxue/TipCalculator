@@ -10,3 +10,5 @@ import Foundation
 
 let minTipsPercentage: Float = 0.0
 let maxTipsPercentage: Float = 30.0
+// Remember bill amounts for 10 minutes
+let rememberSeconds: Double = 10 * 60

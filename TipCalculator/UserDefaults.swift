@@ -9,7 +9,9 @@
 import Foundation
 
 class UserDefaults {
-    private let defaultTipPercentageDefaultsKey = "minTipPercentage"
+    private let defaultTipPercentageDefaultsKey = "defaultTipPercentage"
+    private let lastUsageDateDefaultsKey = "lastUsageDate"
+    private let lastBillAmountDefaultsKey = "lastBillAmount"
     let defaults = NSUserDefaults.standardUserDefaults()
     
     var defaultTipPercentage: Int {
@@ -18,6 +20,22 @@ class UserDefaults {
         }
         set {
             defaults.setInteger(newValue, forKey: defaultTipPercentageDefaultsKey)
+            defaults.synchronize()
+        }
+    }
+    
+    var lastBillAmount: Float {
+        get {
+            let lastBillAmount = defaults.floatForKey(lastBillAmountDefaultsKey)
+            if let lastUsageDate = defaults.objectForKey(lastUsageDateDefaultsKey) as? NSDate where NSDate().timeIntervalSinceDate(lastUsageDate) < rememberSeconds {
+                return lastBillAmount
+            } else {
+                return 0
+            }
+        }
+        set {
+            defaults.setObject(NSDate(), forKey: lastUsageDateDefaultsKey)
+            defaults.setFloat(newValue, forKey: lastBillAmountDefaultsKey)
             defaults.synchronize()
         }
     }
