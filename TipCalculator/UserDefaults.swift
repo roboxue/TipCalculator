@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import UIKit
 
 class UserDefaults {
     private let defaultTipPercentageDefaultsKey = "defaultTipPercentage"
     private let lastUsageDateDefaultsKey = "lastUsageDate"
     private let lastBillAmountDefaultsKey = "lastBillAmount"
+    private let themeDefaultsKey = "theme"
     let defaults = NSUserDefaults.standardUserDefaults()
     
     var defaultTipPercentage: Int {
@@ -37,6 +39,25 @@ class UserDefaults {
             defaults.setObject(NSDate(), forKey: lastUsageDateDefaultsKey)
             defaults.setFloat(newValue, forKey: lastBillAmountDefaultsKey)
             defaults.synchronize()
+        }
+    }
+    
+    var visualTheme: VisualTheme {
+        get {
+            let themeToUse: VisualTheme
+            if let themeName = defaults.stringForKey(themeDefaultsKey), theme = VisualTheme(rawValue: themeName) {
+                themeToUse = theme
+            } else {
+                // Default to light
+                themeToUse = .Light
+            }
+            let window = UIApplication.sharedApplication().keyWindow
+            window?.tintColor = themeToUse.tintColor
+            window?.backgroundColor = themeToUse.backgroundColor
+            return themeToUse
+        }
+        set {
+            defaults.setObject(newValue.rawValue, forKey: themeDefaultsKey)
         }
     }
 }

@@ -51,6 +51,7 @@ class TipViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        refreshTheme()
         updateTips()
     }
     
@@ -61,6 +62,20 @@ class TipViewController: UIViewController {
 }
 
 extension TipViewController {
+    func refreshTheme() {
+        let theme = Defaults.visualTheme
+        inputWrapper.backgroundColor = theme.tintColor
+        amountInput.backgroundColor = theme.tintColor
+        amountInput.textColor = theme.backgroundColor
+        amountInput.keyboardAppearance = theme.keyboardAppearance
+        tipsOutput.textColor = theme.tintColor
+        tipTitle.backgroundColor = theme.tintColor
+        tipTitle.textColor = theme.backgroundColor
+        tipPercentLabel.backgroundColor = theme.tintColor
+        tipPercentLabel.textColor = theme.backgroundColor
+    }
+    
+
     func amountDidChanged(sender: UITextField!) {
         updateTips()
     }
@@ -79,11 +94,12 @@ extension TipViewController {
             tipsValue = "n/a"
         }
 
-        self.tipsOutput.textColor = TUIBackgroundColor
+        let theme = Defaults.visualTheme
+        self.tipsOutput.textColor = theme.backgroundColor
         self.tipsOutput.alpha = 0
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.tipsOutput.text = tipsValue
-            self.tipsOutput.textColor = TUITintColor
+            self.tipsOutput.textColor = theme.tintColor
             self.tipsOutput.alpha = 1
         })
     }
@@ -102,7 +118,6 @@ extension TipViewController {
     var inputWrapper: UIView {
         if _inputWrapper == nil {
             let wrapper = UIView()
-            wrapper.backgroundColor = TUITintColor
             wrapper.addSubview(amountInput)
             wrapper.addSubview(tipTitle)
             wrapper.addSubview(tipPercentLabel)
@@ -130,8 +145,6 @@ extension TipViewController {
         if _amountInput == nil {
             let textField = UITextField()
             textField.font = TUIFontHuge
-            textField.backgroundColor = TUITintColor
-            textField.textColor = TUIBackgroundColor
             textField.keyboardType = UIKeyboardType.DecimalPad
             textField.textAlignment = .Right
             textField.placeholder = String(NSLocale.currentLocale().objectForKey(NSLocaleCurrencySymbol) as! NSString)
@@ -148,7 +161,6 @@ extension TipViewController {
             label.font = TUIFontHuge
             label.textAlignment = .Right
             label.adjustsFontSizeToFitWidth = true
-            label.textColor = TUITintColor
             _tipsOutput = label
         }
         return _tipsOutput
@@ -158,8 +170,6 @@ extension TipViewController {
         if _tipTitle == nil {
             let label = UILabel()
             label.font = TUIFontLarge
-            label.backgroundColor = TUITintColor
-            label.textColor = TUIBackgroundColor
             label.text = "Tip:"
             _tipTitle = label
         }
@@ -170,8 +180,6 @@ extension TipViewController {
         if _tipPercentLabel == nil {
             let label = UILabel()
             label.font = TUIFontLarge
-            label.backgroundColor = TUITintColor
-            label.textColor = TUIBackgroundColor
             label.textAlignment = .Right
             _tipPercentLabel = label
         }
