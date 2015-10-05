@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.tintColor = TUITintColor
-        window!.backgroundColor = TUIBackgroundColor
+        window!.tintColor = Defaults.visualTheme.tintColor
+        window!.backgroundColor = Defaults.visualTheme.backgroundColor
         window!.rootViewController = UINavigationController(rootViewController: TipViewController())
         window!.makeKeyAndVisible()
         return true
