@@ -23,7 +23,6 @@ class TipViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tipPercentage = Float(Defaults.defaultTipPercentage)
         view.addSubview(inputWrapper)
         view.addSubview(tipsOutput)
         view.addSubview(tipPercentageSlider)
@@ -44,12 +43,19 @@ class TipViewController: UIViewController {
             make.bottom.equalTo(view).offset(-keyboardHeight)
         }
         navigationItem.rightBarButtonItem = settingsButton
+        tipPercentage = Float(Defaults.defaultTipPercentage)
+        amountInput.text = String(format: "%0.2f", Defaults.lastBillAmount)
         
         title = "Tip Calculator"
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        updateTips()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         amountInput.becomeFirstResponder()
     }
 }
@@ -66,8 +72,9 @@ extension TipViewController {
     
     func updateTips() {
         let tipsValue: String
-        if let amount = NSNumberFormatter().numberFromString(amountInput.text)?.doubleValue {
-            tipsValue = String(format: "$%0.2f", amount * (1 + Double(tipPercentage) / 100.0))
+        if let amount = NSNumberFormatter().numberFromString(amountInput.text)?.floatValue {
+            tipsValue = String(format: "$%0.2f", amount * (1 + Float(tipPercentage) / 100.0))
+            Defaults.lastBillAmount = amount
         } else {
             tipsValue = "n/a"
         }
