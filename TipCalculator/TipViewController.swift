@@ -73,7 +73,7 @@ extension TipViewController {
     func updateTips() {
         let tipsValue: String
         if let amount = NSNumberFormatter().numberFromString(amountInput.text)?.floatValue {
-            tipsValue = String(format: "$%0.2f", amount * (1 + Float(tipPercentage) / 100.0))
+            tipsValue = numberFormatter.stringFromNumber(amount * (1 + Float(tipPercentage) / 100.0))!
             Defaults.lastBillAmount = amount
         } else {
             tipsValue = "n/a"
@@ -134,7 +134,7 @@ extension TipViewController {
             textField.textColor = TUIBackgroundColor
             textField.keyboardType = UIKeyboardType.DecimalPad
             textField.textAlignment = .Right
-            textField.placeholder = "$"
+            textField.placeholder = String(NSLocale.currentLocale().objectForKey(NSLocaleCurrencySymbol) as! NSString)
             textField.clearButtonMode = .WhileEditing
             textField.addTarget(self, action: "amountDidChanged:", forControlEvents: .EditingChanged)
             _amountInput = textField
@@ -208,5 +208,12 @@ extension TipViewController {
             _settingsButton = button
         }
         return _settingsButton
+    }
+    
+    var numberFormatter: NSNumberFormatter {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale.currentLocale()
+        return formatter
     }
 }
