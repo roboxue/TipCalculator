@@ -17,6 +17,7 @@ class TipsViewController: UIViewController {
     private var _tipPercentLabel: UILabel!
     private var _tipPercentage: Float!
     private var _tipPercentageSlider: UISlider!
+    private var _settingsButton: UIBarButtonItem!
     private let keyboardHeight = 216
     
     
@@ -41,13 +42,14 @@ class TipsViewController: UIViewController {
             make.right.equalTo(view).offset(-TUISpanSize)
             make.bottom.equalTo(view).offset(-keyboardHeight)
         }
+        navigationItem.rightBarButtonItem = settingsButton
         
         title = "Tip Calculator"
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        tipPercentage = defaultTipsPercentage
+        tipPercentage = Float(Defaults.defaultTipPercentage)
         amountInput.becomeFirstResponder()
     }
 }
@@ -69,6 +71,11 @@ extension TipsViewController {
             tipsOutput.text = "n/a"
         }
 
+    }
+    
+    func didPressedSettingsButton() {
+        let settingsScreen = SettingsViewController()
+        navigationController?.pushViewController(settingsScreen, animated: true)
     }
 }
 
@@ -178,5 +185,13 @@ extension TipsViewController {
             }
             return _tipPercentageSlider
         }
+    }
+    
+    var settingsButton: UIBarButtonItem {
+        if _settingsButton == nil {
+            let button = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: "didPressedSettingsButton")
+            _settingsButton = button
+        }
+        return _settingsButton
     }
 }

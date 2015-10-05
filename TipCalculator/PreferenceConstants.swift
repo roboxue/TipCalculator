@@ -8,6 +8,5 @@
 
 import Foundation
 
-let defaultTipsPercentage: Float = 15.0
-let minTipsPercentage: Float = 10.0
+let minTipsPercentage: Float = 0.0
 let maxTipsPercentage: Float = 30.0
